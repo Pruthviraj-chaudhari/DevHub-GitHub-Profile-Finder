@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Developers</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <header class="header">
+            <h1 class="title"><a href="/">DevHub</a></h1>
+            <div id="btn-mode">
+                <p id="mode-text">DARK</p>
+                <div class="icon-container"><img id="mode-icon" src="./images/moon-icon.svg" alt=""></div>
+            </div>
+        </header>
+
+        <main>
+            <div id="app">
+
+                <div class="profile-container">
+                    <div class="profile-content">
+                        <div class="profile-header">
+                            <img id="avatar" src="<%= pic %>" alt="">
+                            <div class="profile-info-wrapper">
+                                <div class="profile-name">
+                                    <h2 id="name">
+                                        <%= name %>
+                                    </h2>
+                                    <a href="https://github.com/<%= username %>" target="_blank" rel="noopener noreferrer" id="user">
+                                        <%= username %>
+                                    </a>
+                                </div>
+                                <p id="date">
+                                    <%= date %>
+                                </p>
+                            </div>
+                        </div>
+
+                        <p id="bio">
+                            <%= bio %>
+                        </p>
+
+                        <div class="profile-stats-wrapper">
+                            <div class="profile-stat">
+                                <p class="stat-title">Repos</p>
+                                <p id="repos" class="stat-value">
+                                    <%= repo %>
+                                </p>
+                            </div>
+                            <div class="profile-stat">
+                                <p class="stat-title">Followers</p>
+                                <p id="followers" class="stat-value">
+                                    <%= followers %>
+                                </p>
+                            </div>
+                            <div class="profile-stat">
+                                <p class="stat-title">Following</p>
+                                <p id="following" class="stat-value">
+                                    <%= following %>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="profile-bottom-wrapper">
+                            <div class="profile-info">
+                                <div class="bottom-icons"><img src="./images/location-icon.svg" alt=""></div>
+                                <p id="location">
+                                    <%= location %>
+                                </p>
+                            </div>
+                            <div class="profile-info">
+                                <div class="bottom-icons"><img src="./images/website-icon.svg" alt=""></div>
+                                <a href="<%= link %>" id="page">
+                                    <%= link %>
+                                </a>
+                            </div>
+                            <div class="profile-info">
+                                <div class="bottom-icons"><img src="./images/twitter-icon.svg" alt=""></div>
+                                <a href="https://twitter.com/<%= twitter %>" id="twitter">
+                                    <%= twitter %>
+                                </a>
+                            </div>
+                            <div class="profile-info">
+                                <div class="bottom-icons"><img src="./images/company-icon.svg" alt=""></div>
+                                <p id="company">
+                                    <%= company %>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+    
+
+    <script>
+
+        let darkMode = false;
+        const btnmode = document.getElementById("btn-mode");
+        const modetext = document.getElementById("mode-text");
+        const modeicon = document.getElementById("mode-icon");
+
+        btnmode.addEventListener("click", function () {
+            if (darkMode == false) {
+                darkModeProperties();
+            } else {
+                lightModeProperties();
+            }
+        });
+
+        //SWITCH TO DARK MODE - activateDarkMode()
+        function darkModeProperties() {
+            const root = document.documentElement.style;
+            root.setProperty("--lm-bg", "#010409");
+            root.setProperty("--lm-bg-content", "#0d1117");
+            root.setProperty("--lm-text", "white");
+            root.setProperty("--lm-text-alt", "white");
+            root.setProperty("--lm-shadow-xl", "rgba(70,88,109,0.15)");
+            modetext.innerText = "LIGHT";
+            modeicon.src = "images/sun-icon.svg";
+            root.setProperty("--lm-icon-bg", "brightness(1000%)");
+            darkMode = true;
+            console.log("darkmode changed to " + darkMode);
+            localStorage.setItem("dark-mode", true);
+
+            console.log("setting dark mode to true");
+
+        }
+
+        //SWITCH TO LIGHT MODE - activateLightMode() 
+        function lightModeProperties() {
+            const root = document.documentElement.style;
+            root.setProperty("--lm-bg", "#F6F8FF");
+            root.setProperty("--lm-bg-content", "#FEFEFE");
+            root.setProperty("--lm-text", "#4B6A9B");
+            root.setProperty("--lm-text-alt", "#2B3442");
+            root.setProperty("--lm-shadow-xl", "rgba(70, 88, 109, 0.25)");
+            modetext.innerText = "DARK";
+            modeicon.src = "images/moon-icon.svg";
+            root.setProperty("--lm-icon-bg", "brightness(100%)");
+            darkMode = false;
+            console.log("darkmode changed to " + darkMode);
+
+            localStorage.setItem("dark-mode", false);
+            console.log("setting dark mode to false");
+        }
+    </script>
+</body>
+
+</html>
